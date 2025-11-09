@@ -29,7 +29,9 @@ class AuthApiKey(models.Model):
         compute="_compute_active", readonly=False, store=True, default=True
     )
 
-    _sql_constraints = [("name_uniq", "unique(name)", "Api Key name must be unique.")]
+
+    _uniq_name = models.Constraint("unique(name)", "Api Key name must be unique.")
+
 
     @api.model
     def _retrieve_api_key(self, key):
